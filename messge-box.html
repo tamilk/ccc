@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<head>
+    <style type="text/css">
+       html,
+        body {
+            width: 100%;
+            height: 100%;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .outbox {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+        }
+        .message-box {
+            display: flex;
+            width: 100px;
+            height: 100px;
+            background: #8da9ea;
+            border: 2px solid #000000;
+            color: #000;
+            justify-content: center;
+            align-items: center;
+        }
+        .message-box:hover{
+            width: 200px;
+            height: 200px;
+            font-size: 20px;
+        }
+        img:hover{
+            width: 120px;
+            height: 120px;
+        }
+        .message-text {
+            font-size: 20px;
+            padding: 15px;
+        }
+        .message-number{
+            display: none;
+        }
+
+        @media screen and (max-width: 500px) {
+            .message-text{
+                display: none;
+            }
+            .message-box:hover{
+                width: 100px;
+                height: 100px;
+            }
+            img:hover{
+                width: 50px;
+                height: 50px; 
+            }
+            .message-box{
+                position: relative;
+                background: #f6f79b;
+            }
+            .message-number{
+                display: block;
+                color: #0abe37;
+                width: 22px;
+                text-align: center;
+                padding: 5px;
+                border-radius: 25px;
+                background: #abff7f;
+                border: 2px solid #0abe37;
+                font-size: 20px;
+                font-weight: bold;
+                position: absolute;
+                top: -15px;
+                left: -15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="outbox">
+        <div class="message-box">
+            <!-- just copied a img link from google -->
+            <img src="https://img.icons8.com/pastel-glyph/64/000000/user-male--v1.png"/>
+            <div class="message-number">6</div>
+        </div>
+        <div class="message-text">You have 6 messages</div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<head>
+    <!-- enable bootstrap for better ux -->
+     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
+    <script>
+        let logs = [];
+        let logId = 1;
+        let logTarget = 'result';
+
+        const addLog = () => {
+            const logType = document.getElementById('logType').value;
+            const logger = document.getElementById('logger').value;
+            const logColor = document.getElementById('logColor').value;
+            let log = {
+                id: logId,
+                logType: logType,
+                logger: logger,
+                logColor: logColor
+            };
+            logs.push(log); //just a thought, added this for consolidating the logs
+            logId++;
+            // reusbleLogger(logTarget, log); // for spread operator method
+            reusbleLogger(logTarget, logType, logColor)(logger);
+        };
+
+        //using spread operator arguments
+        // const reusbleLogger = (...args) => content => {
+        //     let target = args[0];
+        //     let logInfo = args[1];
+        //     let type = logInfo.logType;
+        //     let color = logInfo.logColor;
+
+        //reusable  function
+        const reusbleLogger = (target, type, color) => content => {
+            const logDiv = document.createElement('div');
+            logDiv.className = type;
+            logDiv.style = `color:${color}`;
+            logDiv.innerHTML = `[${type}] ${content}`;
+            const contentTarget = document.querySelector(`#${target}`);
+            contentTarget.append(logDiv);
+        };
+
+
+        window.onload = () => {
+            document.querySelector('#addLog').addEventListener("click", addLog);
+
+            const testLog = [
+                { log: 'info', color : 'gray'},
+                { log: 'debug', color : 'blue'},
+                { log: 'error', color : 'red'},
+                { log: 'warning', color : 'orange'},
+                { log: 'some log', color : 'green'},
+            ];
+            testLog.map(l => {
+                reusbleLogger(logTarget, l.log, l.color)(`I'm a test log from ${l.log} with ${l.color}.`);
+            });
+        }
+    </script>
+</head>
+
+<body>
+
+    <div id="result" style="border: 1px solid gray; padding:10px; font-size: 20px;"></div>
+
+    <br><hr /><br>
+    <div style="width: 100%; text-align: center;padding: 15px;" class="container">
+        <input id="logColor" placeholder="Enter Color" type="text" size="20" class="form-control"/><br>
+        <input id="logType" placeholder="Enter Log Type" type="text" size="25"  class="form-control"/><br>
+        <input id="logger" placeholder="Enter Message" type="text" size="50"  class="form-control"/><br>
+        <button id="addLog" class="btn btn-primary">Add Log</button>
+    </div>
+
+</body>
+
+</html>

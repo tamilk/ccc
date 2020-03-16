@@ -1,0 +1,34 @@
+<html>
+
+<head>
+    <script>
+        console.log('async function loading....');
+
+        const timer = ms => logName => {
+            return new Promise((resolve, reject) => {
+                const print = param => {
+                    console.log(param);
+                    resolve();
+                };
+                setTimeout(print, ms, `${logName} called`);
+            });
+        }
+
+        const log1 = timer(2500);
+        const log2 = timer(1500);
+        const log3 = timer(500);
+
+        //converting const varibales as a input to curried timer function
+        (async () => {
+            await log1('log1');
+            await log2('log2');
+            await log3('log3');
+        })();
+    </script>
+</head>
+
+<body>
+    <div>Async function loading in the console...</div>
+</body>
+
+</html>
