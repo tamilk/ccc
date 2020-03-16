@@ -50,7 +50,7 @@
                 { log: 'debug', color : 'blue'},
                 { log: 'error', color : 'red'},
                 { log: 'warning', color : 'orange'},
-                { log: 'some log', color : 'green'},
+                { log: 'silly', color : 'aqua'},
             ];
             testLog.map(l => {
                 reusbleLogger(logTarget, l.log, l.color)(`I'm a test log from ${l.log} with ${l.color}.`);
